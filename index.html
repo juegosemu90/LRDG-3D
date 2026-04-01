@@ -3,118 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>La Rosa de capítulos 🌹</title>
+    <title>La Rosa de Capítulos </title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #080808; color: white; text-align: center; padding: 10px; margin: 0; }
-        .buscador { width: 90%; padding: 12px; margin-bottom: 20px; border-radius: 20px; border: none; outline: none; background: #f0f0f0; font-weight: bold; color: #333; }
-        
-        /* Menú Principal 🏠 */
-        #menu { display: flex; flex-direction: column; gap: 12px; align-items: center; padding-top: 20px; }
-        .btn-temp { width: 95%; max-width: 400px; padding: 18px; border-radius: 15px; border: none; background: #1e1e1e; color: white; cursor: pointer; font-size: 17px; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
-        .btn-temp:hover { background: #ff4d4d; transform: scale(1.02); }
-
-        /* Vistas 📺 */
-        #vista-caps, #vista-reproductor { display: none; padding-top: 10px; }
-        .btn-azul { background: #007bff; color: white; padding: 12px 25px; border: none; border-radius: 10px; margin-bottom: 20px; cursor: pointer; font-weight: bold; font-size: 15px; }
-        
-        /* Grid de Episodios 📱 */
-        .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; padding: 5px; max-width: 800px; margin: auto; }
-        @media (min-width: 600px) { .grid { grid-template-columns: repeat(4, 1fr); } }
-
-        .btn-cap { 
-            background: #1a1a1a; color: #ffffff; border: 1px solid #333; border-radius: 10px; 
-            overflow: hidden; cursor: pointer; display: flex; flex-direction: column; 
-            align-items: center; padding: 0 0 8px 0; font-size: 13px; font-weight: bold; transition: 0.2s;
+        :root {
+            /* ⚪️ Color principal ahora es blanco */
+            --color-destacado: #ffffff; 
+            --negro-fondo: #0a0a0a;
+            --gris-suave: #1e1e1e;
         }
-        .btn-cap:hover { border-color: #ff4d4d; background: #252525; }
 
-        .miniatura { width: 100%; aspect-ratio: 16/9; object-fit: cover; background: #000; margin-bottom: 5px; }
+        body { 
+            font-family: 'Roboto', sans-serif; 
+            background: var(--negro-fondo); 
+            color: white; 
+            margin: 0; 
+            padding: 0;
+            text-align: center;
+        }
 
-        /* Reproductor 🎬 */
-        .contenedor-video { width: 100%; max-width: 850px; margin: auto; background: black; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        /* 🏠 Encabezado - Nombre en Blanco ⚪️ */
+        header { padding: 30px 5%; }
+        h1 { color: var(--color-destacado); margin-bottom: 20px; font-size: 2rem; text-transform: uppercase; }
+
+        /* 🔍 Buscador Redondo */
+        .buscador { 
+            width: 85%; max-width: 500px; padding: 15px 25px; 
+            border-radius: 50px; border: none; 
+            background: white; color: #333; 
+            font-weight: bold; outline: none; 
+            margin-bottom: 20px;
+        }
+
+        /* 📋 Listas Verticales */
+        .lista-vertical { display: flex; flex-direction: column; gap: 15px; align-items: center; padding: 20px; }
+
+        /* Botones de Temporada - Marco y Texto en Blanco ⚪️ */
+        .btn-temp { 
+            width: 90%; max-width: 600px; padding: 20px; 
+            background: var(--gris-suave); color: white; 
+            border: 2px solid var(--color-destacado); border-radius: 12px; 
+            font-size: 1.2rem; font-weight: bold; cursor: pointer;
+        }
+
+        /* 📱 Botones de Episodios - Marco Blanco ⚪️ */
+        .btn-cap { 
+            width: 95%; max-width: 700px; 
+            background: var(--gris-suave); 
+            /* ⚪️ Marco blanco para el episodio */
+            border: 1px solid var(--color-destacado); 
+            border-radius: 15px; 
+            overflow: hidden; cursor: pointer;
+            display: flex; flex-direction: column; 
+            padding-bottom: 10px; /* Menos padding inferior */
+        }
+        .miniatura { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+        
+        /* 🤏 Texto de episodio CHIKITO y Blanco */
+        .cap-text { 
+            font-size: 0.9rem; /* Tamaño chiquito 📏 */
+            font-weight: normal; /* No tan negrita */
+            margin-top: 8px; 
+            margin-left: 15px; /* Un poco menos de margen */
+            color: var(--color-destacado); /* Blanco ⚪️ */
+            text-align: left;
+            width: 100%;
+        }
+
+        /* 🎬 Reproductor y Textos */
+        .contenedor-video { width: 100%; max-width: 900px; margin: 20px auto 10px auto; background: black; border-radius: 10px; overflow: hidden; }
         video { width: 100%; aspect-ratio: 16/9; display: block; }
-        .info-video { margin-top: 20px; padding: 20px; background: #141414; border-radius: 15px; border-bottom: 5px solid #ff4d4d; max-width: 800px; margin: auto; }
+
+        .info-reproductor { 
+            max-width: 900px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+            text-align: left; 
+        }
+
+        /* ⚪️ Info del reproductor también en Blanco */
+        .tag-web { 
+            color: var(--color-destacado); 
+            font-size: 1rem; 
+            font-weight: bold; 
+            margin: 0; 
+        }
+
+        .titulo-data { 
+            color: white; 
+            font-size: 1.2rem; 
+            margin: 2px 0 0 0; 
+            font-weight: bold;
+        }
+        
+        /* Botón volver abajo */
+        .btn-abajo { 
+            background: #333; color: white; border: none; 
+            padding: 15px 40px; border-radius: 8px; cursor: pointer; 
+            margin: 40px 0; font-weight: bold;
+        }
+
+        #vista-caps, #vista-reproductor { padding-bottom: 60px; }
     </style>
 </head>
 <body>
 
-    <div id="menu">
-        <h1 style="color: #ff4d4d;">La Rosa de capítulos 🌹</h1>
-        <input type="text" class="buscador" placeholder="🔍 Buscar temporada..." onkeyup="filter(this, '.btn-temp')">
-        <button class="btn-temp" onclick="verTemporada(1, 83)">Temporada 1</button>
-        <button class="btn-temp" onclick="verTemporada(2, 88)">Temporada 2</button>
-        <button class="btn-temp" onclick="verTemporada(3, 109)">Temporada 3</button>
-        <button class="btn-temp" onclick="var saltos = [55]; verTemporada(5, 97, saltos)">Temporada 5</button>
+    <header>
+        <h1>LA ROSA DE CAPÍTULOS 🌹</h1>
+        <input type="text" class="buscador" placeholder="🔍 Buscar..." onkeyup="filter(this)">
+    </header>
+
+    <div id="menu" class="lista-vertical">
+        <button class="btn-temp" onclick="verTemporada(1, 83)">TEMPORADA 1</button>
+        <button class="btn-temp" onclick="verTemporada(2, 88)">TEMPORADA 2</button>
+        <button class="btn-temp" onclick="verTemporada(3, 109)">TEMPORADA 3</button>
+        <button class="btn-temp" onclick="verTemporada(4, 97)">TEMPORADA 4</button>
+        <button class="btn-temp" onclick="verTemporada(5, 97)">TEMPORADA 5</button>
     </div>
 
-    <div id="vista-caps">
-        <button class="btn-azul" onclick="irAlMenu()">🏠 Menú Principal</button>
-        <h2 id="titulo-temp" style="color: #ff4d4d;"></h2>
-        <input type="text" class="buscador" placeholder="🔢 Buscar capítulo..." onkeyup="filter(this, '.btn-cap')">
-        <div id="caps" class="grid"></div>
+    <div id="vista-caps" style="display:none">
+        <h2 id="titulo-temp"></h2>
+        <div id="caps" class="lista-vertical"></div>
+        <button class="btn-abajo" onclick="irAlMenu()">🏠 INICIO</button>
     </div>
 
-    <div id="vista-reproductor">
-        <button class="btn-azul" onclick="volverALista()">⬅ Volver a la Lista</button>
+    <div id="vista-reproductor" style="display:none">
         <div class="contenedor-video">
-            <video id="reproductor" controls autoplay>Tu navegador no soporta video.</video>
+            <video id="reproductor" controls autoplay></video>
         </div>
-        <div class="info-video">
-            <h2 id="info-titulo" style="color: #ff4d4d; margin: 0;"></h2>
-            <h3 id="info-episodio" style="color: #ffffff; margin: 5px 0; font-weight: normal;"></h3>
+        <div class="info-reproductor">
+            <p class="tag-web">La rosa de capitulos</p>
+            <p id="data-show" class="titulo-data"></p>
         </div>
+        <button class="btn-abajo" onclick="volverALista()">⬅ VOLVER</button>
     </div>
 
     <script>
-        function verTemporada(n, cant, saltar = []) {
+        function verTemporada(n, cant) {
             document.getElementById('menu').style.display = 'none';
             document.getElementById('vista-caps').style.display = 'block';
             document.getElementById('titulo-temp').innerText = 'Temporada ' + n;
-            
             const box = document.getElementById('caps');
             box.innerHTML = '';
 
             for (let i = 1; i <= cant; i++) {
-                // 🦘 Salto del capítulo 55 en Temporada 5
                 if (n === 5 && i === 55) continue; 
-                
                 let tStr = n.toString().padStart(2, '0'); 
-                // 🔢 T3 usa 3 dígitos (Exxx), las demás 2 (Exx)
                 let cStr = (n === 3) ? i.toString().padStart(3, '0') : i.toString().padStart(2, '0');
-
-                // 🖼️ URL Miniaturas
                 let urlThumb = `https://archive.org/download/LRDG-21/Fondos/La%20Rosa%20de%20Guadalupe%20S${tStr}E${cStr}.png`;
 
                 let b = document.createElement('button');
                 b.className = 'btn-cap';
                 b.innerHTML = `
-                    <img src="${urlThumb}" class="miniatura" loading="lazy" onerror="this.src='https://via.placeholder.com/150x84?text=Rosa+Cap+${i}'">
-                    <span>Capítulo ${i}</span>
+                    <img src="${urlThumb}" class="miniatura" loading="lazy" onerror="this.src='https://via.placeholder.com/400x225/1e1e1e/ffffff?text=Capítulo+${i}'">
+                    <div class="cap-text">Capítulo ${i}</div>
                 `;
                 b.onclick = () => reproducir(n, i, tStr, cStr);
                 box.appendChild(b);
             }
+            window.scrollTo(0,0);
         }
 
         function reproducir(n, cap, tF, cF) {
             document.getElementById('vista-caps').style.display = 'none';
             document.getElementById('vista-reproductor').style.display = 'block';
-            
             const video = document.getElementById('reproductor');
             
-            // ✅ URL SOLUCIONADA: Carpeta fija "Temporada 1" pero con Sxx y Exxx variables
+            // URL fija Temporada 1
             video.src = `https://archive.org/download/LRDG-21/Temporada%201/La%20Rosa%20de%20Guadalupe%20S${tF}E${cF}.mp4`;
             
-            document.getElementById('info-titulo').innerText = 'Temporada ' + n;
-            document.getElementById('info-episodio').innerText = 'Episodio ' + cap;
+            document.getElementById('data-show').innerText = `T${n} C${cap}`;
             
-            video.load(); 
+            video.load();
             window.scrollTo(0,0);
         }
 
         function irAlMenu() { 
             document.getElementById('menu').style.display = 'flex'; 
             document.getElementById('vista-caps').style.display = 'none'; 
+            document.getElementById('vista-reproductor').style.display = 'none';
+            document.getElementById('reproductor').pause();
         }
 
         function volverALista() { 
@@ -123,11 +191,11 @@
             document.getElementById('vista-caps').style.display = 'block'; 
         }
 
-        function filter(input, clase) {
+        function filter(input) {
             let txt = input.value.toLowerCase();
-            document.querySelectorAll(clase).forEach(el => {
-                let coincide = el.innerText.toLowerCase().includes(txt);
-                el.style.display = coincide ? (clase === '.btn-temp' ? 'block' : 'flex') : 'none';
+            let selector = document.getElementById('menu').style.display !== 'none' ? '.btn-temp' : '.btn-cap';
+            document.querySelectorAll(selector).forEach(el => {
+                el.style.display = el.innerText.toLowerCase().includes(txt) ? 'flex' : 'none';
             });
         }
     </script>
